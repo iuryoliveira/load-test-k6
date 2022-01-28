@@ -13,7 +13,7 @@ export let options = {
         { duration: '4m', target: 2000 }, 
         { duration: '2m', target: 5000 }, 
         { duration: '4m', target: 5000 }, 
-        /* pode continuar até o número desejado (3000) */
+        /* pode continuar até o número desejado (30000) */
         { duration: '10m', target: 0 } 
     ],
 };
