@@ -8,16 +8,24 @@ O objetivo do teste de carga é verificar como o sistema irá se comportar quand
 2. No segundo stage o número de usuários ativos é mantido por uma quantidade considerável de tempo;
 3. No terceiro stage, a quantidade do usuários deve ser desescalada até zero.
 
-#### Script
-npm: ```npm run load```
+### Script de execução
+Na raiz do projeto: 
+
+npm: ```npm run load``` 
+
+ou
+
 Yarn: ```yarn load```
 
 # Teste de stress
 O objetivo do teste de estresse é verificar como a aplicação irá se comportar, considerando que teremos um ramp up na quantidade de usuários, seguido de um período de estabilização, várias vezes,
 até que a quantidade de usuários ativos ultrapasse o ponto de quebra do sistema, quando os resultados são colhidos.
 
-#### Script
+### Script
 npm: ```npm run stress```
+
+ou
+
 Yarn: ```yarn stress```
 
 # Relatório
@@ -85,38 +93,61 @@ default ✓ [======================================] 000/300 VUs  20m0s
 [Documentação](https://k6.io/docs/results-visualization/influxdb-+-grafana/)
 
 ## Instalar InfluxDB 1
+Mac OS: 
+
 ```brew install influxdb@1```
 
+Windows:
 
-#### Confirmar que o serviço está rodando
-```brew services restart influxdb@1```
+```To Do```
 
-Acessar a o endereço ```http://localhost:8086/```
+Por default, o InfluxDB rodará no endereço ```http://localhost:8086/```
 
 ## Instalar o Grafana
+Mac OS:
+
 ```brew install grafana```
 
-#### Confirmar que o serviço está rodando
-```brew services restart grafana```
+Windows:
+
+```To Do```
+
+Por default, o InfluxDB rodará no endereço ```http://localhost:3000/```
+
+## Confirmar que o serviço do InfluxDB e Grafana estão rodando
+Na raiz do projeto execute o comando:
+
+npm: ```npm run restart-services```
+
+ou
+
+Yarn: ```yarn restart-services```
 
 ## Configurando o relatório pela primeira vez
-1. Acessar o endereço http://localhost:3000/
-Usuário padrão grafana: ```user: admin password: admin```
+1. Acessar o endereço do Grafana http://localhost:3000/.
 
-2. Executar um teste para gerar dados de relatório (Influxdb deve estar rodando)
-npm: ```npm run load-report```
-Yarn: ```yarn load-report```
+2. Logar com o usuário padrão do Grafana: ```user: admin password: admin```
 
-3. No Grafana, acessar o menu lateral > Configurations > Data Source 
-4. Selecionar o tipo da fonte de dados = Influxdb
-5. Configurar o nome do data source = myk6db
-6. Configurar database = myk6db
-7. Configurar http method = GET
-8. Clicar em "Save and Test". Se a configuração da base estiver correta, o data source será criado
-9. Acessar o menu Lateral > Create > Import
-10. No campo "import via Grafana.com", informar o ID do relatório (10660) e clicar em Load. Outros relatórios estão disponíveis em [Grafana](https://grafana.com/grafana/dashboards/?search=k6).
-11. Selecionar o data srouce criado anteriormente
-12. Salvar
+3. Executar um teste de carga/stress para gerar dados de relatório (Influxdb deve estar rodando).
 
-## Consultando o dashboard
-Após importar o relatório, basta ir no menu lateral > Dashboards e selecionar o dashboard criado. Após cada execução do k6, o relatório será atualizado
+     npm: ```npm run load-report``` ou ```npm run stress-report```
+
+     ou
+
+     Yarn: ```yarn load-report``` ou ```yarn stress-report```
+
+4. No Grafana, acessar o menu lateral > Configurations > Data Source 
+5. Selecionar "InfluxDB" como tipo da fonte de dados;
+6. Configurar "myk6db" como nome do data source;
+7. Configurar "myk6db" como database;
+8. Configurar "GET" como http method;
+9. Clicar em "Save and Test". Se a configuração do Data Source estiver estiver correta, o data source será criado;
+10. Acessar o menu Lateral > Create > Import;
+11. No campo "import via Grafana.com", informar o ID do relatório "10660" e clicar em Load. Outros relatórios estão disponíveis em [Grafana](https://grafana.com/grafana/dashboards/?search=k6);
+12. Selecionar o data srouce "myk6db" que foi criado anteriormente;
+13. Salvar.
+
+# Consultando o dashboard
+
+Ao executar um teste que gera dados de relatório (scripts
+```npm run load-report``` ou ```npm run stress-report```), a base de dados do InfluxDB será populada e com estes dados poderemos consultar o painel criado no Grafana. Para isto, basta acessar o grafana em ```http://localhost:3000/``` e, em seguida, navegar no "Menu lateral > Dashboards" e selecionar o dashboard criado.
