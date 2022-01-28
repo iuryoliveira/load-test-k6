@@ -19,6 +19,10 @@ export let options = {
 };
 
 export default () => {
+    /* 
+    permite fazer requisição para vários endpoints de uma única vez.
+    1 usuário consome N endpoints
+    */
     http.batch([
         ['GET', 'http://localhost:3333/api/v1/users']
     ]);
