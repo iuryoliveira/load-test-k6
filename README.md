@@ -92,27 +92,30 @@ default ✓ [======================================] 000/300 VUs  20m0s
 # Integração com InfluxDB para acompanhar o report através de gráficos
 [Documentação](https://k6.io/docs/results-visualization/influxdb-+-grafana/)
 
-## Instalar InfluxDB 1
-Mac OS: 
+<details open>
+<summary>Instalação Windows</summary>
 
-```brew install influxdb@1```
+     Instalar o chocolatey: (https://chocolatey.org/)
+     
+     Instalar o InfluxDB: $ choco install influxdb
 
-Windows:
+     Instalar o Grafana: $ choco install grafana
+</details>
 
-```To Do```
+<details>
+<summary>Instalação Mac OS</summary>
+     
+     Instalar o InfluxDB: $ brew install influxdb@1
+
+     Instalar o Grafana: $ brew install grafana
+</details>
+<br />
 
 Por default, o InfluxDB rodará no endereço ```http://localhost:8086/```
 
-## Instalar o Grafana
-Mac OS:
+Por default, o Grafana rodará no endereço ```http://localhost:3000/```
 
-```brew install grafana```
-
-Windows:
-
-```To Do```
-
-Por default, o InfluxDB rodará no endereço ```http://localhost:3000/```
+<br />
 
 ## Confirmar que o serviço do InfluxDB e Grafana estão rodando
 Na raiz do projeto execute o comando:
