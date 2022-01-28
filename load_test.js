@@ -12,6 +12,7 @@ export let options = {
         // { duration: '20m', target: 30000 }, 
         // { duration: '10m', target: 0 } 
     ],
+    summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)'],
     thresholds: {
         http_req_duration: ['p(99)<150'], //99% requests must complete before 150ms
     },
