@@ -151,3 +151,7 @@ Yarn: ```yarn restart-services```
 
 Ao executar um teste que gera dados de relatório (scripts
 ```npm run load-report``` ou ```npm run stress-report```), a base de dados do InfluxDB será populada e com estes dados poderemos consultar o painel criado no Grafana. Para isto, basta acessar o grafana em ```http://localhost:3000/``` e, em seguida, navegar no "Menu lateral > Dashboards" e selecionar o dashboard criado.
+
+
+# Otimizando o script
+[Documentação K6](https://k6.io/docs/testing-guides/running-large-tests/)
