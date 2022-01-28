@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "load": "k6 run load_test.js",
+        "stress": "k6 run stress_test.js"
+    }
+}
