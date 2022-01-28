@@ -1,6 +1,8 @@
 {
     "scripts": {
         "load": "k6 run load_test.js",
-        "stress": "k6 run stress_test.js"
+        "stress": "k6 run stress_test.js",
+        "load-report": "k6 run --out influxdb=http://localhost:8086/myk6db load_test.js",
+        "stress-report": "k6 run --out influxdb=http://localhost:8086/myk6db stress_test.js"
     }
 }

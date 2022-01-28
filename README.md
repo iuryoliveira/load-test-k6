@@ -81,5 +81,42 @@ default ✓ [======================================] 000/300 VUs  20m0s
 
 [Definições das métricas](https://k6.io/docs/using-k6/metrics/)
 
-#### Integração com InfluxDB para acompanhar o report através de gráficos
+# Integração com InfluxDB para acompanhar o report através de gráficos
 [Documentação](https://k6.io/docs/results-visualization/influxdb-+-grafana/)
+
+## Instalar InfluxDB 1
+```brew install influxdb@1```
+
+
+#### Confirmar que o serviço está rodando
+```brew services restart influxdb@1```
+
+Acessar a o endereço ```http://localhost:8086/```
+
+## Instalar o Grafana
+```brew install grafana```
+
+#### Confirmar que o serviço está rodando
+```brew services restart grafana```
+
+## Configurando o relatório pela primeira vez
+1. Acessar o endereço http://localhost:3000/
+Usuário padrão grafana: ```user: admin password: admin```
+
+2. Executar um teste para gerar dados de relatório (Influxdb deve estar rodando)
+npm: ```npm run load-report```
+Yarn: ```yarn load-report```
+
+3. No Grafana, acessar o menu lateral > Configurations > Data Source 
+4. Selecionar o tipo da fonte de dados = Influxdb
+5. Configurar o nome do data source = myk6db
+6. Configurar database = myk6db
+7. Configurar http method = GET
+8. Clicar em "Save and Test". Se a configuração da base estiver correta, o data source será criado
+9. Acessar o menu Lateral > Create > Import
+10. No campo "import via Grafana.com", informar o ID do relatório (10660) e clicar em Load. Outros relatórios estão disponíveis em [Grafana](https://grafana.com/grafana/dashboards/?search=k6).
+11. Selecionar o data srouce criado anteriormente
+12. Salvar
+
+## Consultando o dashboard
+Após importar o relatório, basta ir no menu lateral > Dashboards e selecionar o dashboard criado. Após cada execução do k6, o relatório será atualizado
