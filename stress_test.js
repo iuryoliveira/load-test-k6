@@ -4,6 +4,7 @@ import http from "k6/http";
 export let options = {
     insecureSkipTLSVerify: true,
     noConnectionReuse: false,
+    /* discardResponseBodies: true, Otimiza consumo de memória descartando o responseBody */
     stages: [
         { duration: '2m', target: 100 },
         { duration: '4m', target: 100 }, 

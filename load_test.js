@@ -4,13 +4,11 @@ import http from "k6/http";
 export let options = {
     insecureSkipTLSVerify: true,
     noConnectionReuse: false,
+    /* discardResponseBodies: true, Otimiza consumo de memória descartando o responseBody */
     stages: [
-        { duration: '5m', target: 300 }, /* escala lentamente até a quantidade normal de usuários esperada */
-        { duration: '10m', target: 300 }, /* mantém a carga de usuários ativas no sistema por um período considerável de tempo */
-        { duration: '5m', target: 0 } /* desescala a quantidade de usuários */
-        // { duration: '10m', target: 30000 }, 
-        // { duration: '20m', target: 30000 }, 
-        // { duration: '10m', target: 0 } 
+        { duration: '10m', target: 3000 }, /* escala lentamente até a quantidade normal de usuários esperada */
+        { duration: '20m', target: 3000 }, /* mantém a carga de usuários ativas no sistema por um período considerável de tempo */
+        { duration: '10m', target: 0 } /* desescala a quantidade de usuários */
     ],
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)'],
     thresholds: {
