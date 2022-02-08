@@ -2,16 +2,16 @@ import { sleep, check } from "k6";
 import { Rate } from 'k6/metrics';
 import http from "k6/http";
 
-const errorRate = new Rate('errorRate');
+const errorRate = new Rate('errors');
 
 export let options = {
     insecureSkipTLSVerify: true,
     noConnectionReuse: false,
     /* discardResponseBodies: true, Otimiza consumo de memória descartando o responseBody */
     stages: [
-        { duration: '0.5m', target: 100 }, /* escala lentamente até a quantidade normal de usuários esperada */
-        { duration: '1m', target: 100 }, /* mantém a carga de usuários ativas no sistema por um período considerável de tempo */
-        { duration: '0.5m', target: 0 } /* desescala a quantidade de usuários */
+        { duration: '10m', target: 3000 }, /* escala lentamente até a quantidade normal de usuários esperada */
+        { duration: '20m', target: 3000 }, /* mantém a carga de usuários ativas no sistema por um período considerável de tempo */
+        { duration: '10m', target: 0 } /* desescala a quantidade de usuários */
     ],
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)'],
     thresholds: {
